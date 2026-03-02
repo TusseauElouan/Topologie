@@ -1,0 +1,20 @@
+@startuml SoftwareConcept
+
+class Software {
+    display_message()
+    save_data()
+    read_data()
+}
+
+class Defenser{
+    check_port_status_on_host()
+}
+
+class Attacker{
+    cipher_data()
+}
+
+Software <|-- Defenser
+Defenser <|-- Attacker
+
+@enduml
