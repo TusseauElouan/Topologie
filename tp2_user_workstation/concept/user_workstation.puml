@@ -1,0 +1,23 @@
+@startuml TP2_UserWorkstation
+skinparam classAttributeIconSize 0
+
+class User {
+  +first_name: str
+  +last_name: str
+  +department: str
+  +role: str
+  +full_name(): str
+  +assign_workstation(ws: Workstation): void
+}
+
+class Workstation {
+  +hostname: str
+  +ip_address: str
+  +os_name: str
+  +set_owner(user: User): void
+}
+
+User "1" -- "0..1" Workstation : uses / assigned_to
+
+@enduml
+

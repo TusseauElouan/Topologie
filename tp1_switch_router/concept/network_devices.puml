@@ -1,0 +1,49 @@
+@startuml TP1_NetworkDevices
+skinparam classAttributeIconSize 0
+
+class EthernetFrame {
+  +source_mac: str
+  +destination_mac: str
+  +ether_type: str
+  +payload: object
+}
+
+class IPPacket {
+  +source_ip: str
+  +destination_ip: str
+  +protocol: str
+  +ttl: int
+  +payload: object
+  +decrement_ttl(): int
+}
+
+class L2Switch {
+  -mac_table: Dict<str, str>
+  +learn_mac(source_mac: str, ingress_port: str): void
+  +lookup_port(destination_mac: str): str
+  +forward_frame(frame: EthernetFrame, ingress_port: str): str
+}
+
+class L3Switch {
+  -routing_table: Dict<str, str>
+  +add_route(prefix: str, next_hop: str): void
+  +route_packet(packet: IPPacket): str
+  +forward_frame(frame: EthernetFrame, ingress_port: str): str
+}
+
+class Router {
+  -interfaces: Dict<str, str>
+  -routing_table: Dict<str, str>
+  +add_interface(name: str, network_cidr: str): void
+  +add_route(prefix: str, next_hop: str): void
+  +route_packet(packet: IPPacket): str
+}
+
+L3Switch --|> L2Switch
+EthernetFrame o-- IPPacket : encapsulates
+L2Switch --> EthernetFrame : switches
+L3Switch --> IPPacket : routes
+Router --> IPPacket : routes
+
+@enduml
+
