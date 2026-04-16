@@ -47,40 +47,21 @@ Connexions :
 
 ### 1. Routeur
 
-Appliquer les fichiers :
-- `routeur/host.config`
-- `routeur/interfaces/switch1.config`
-- `routeur/interfaces/switch2.config`
+- `configs/routeur/host.config` → coller dans le terminal
+- `configs/routeur/interface_lan.config` → coller dans le terminal
 
-### 2. Switch1
+### 2. Switch1 et Switch2 (même config, changer le hostname)
 
-Appliquer les fichiers :
-- `switch1/host.config`
-- `switch1/interfaces/routeur.config`
-- `switch1/interfaces/switch2.config`
-- `switch1/interfaces/pc1.config`
-- `switch1/interfaces/serveur1.config`
+- `configs/switch/host.config` → remplacer `<NOM>` par `Switch1` ou `Switch2`
+- `configs/switch/interface_uplink.config` → remplacer `<INTERFACE>` par `GigabitEthernet0/2`
+- `configs/switch/interface_trunk.config` → remplacer `<INTERFACE>` par `GigabitEthernet0/1`
+- `configs/switch/interface_access.config` → appliquer sur chaque port host (`Fa0/1`, `Fa0/2`, etc.)
 
-### 3. Switch2
+### 3. Serveurs et PCs (via GUI Packet Tracer)
 
-Appliquer les fichiers :
-- `switch2/host.config`
-- `switch2/interfaces/routeur.config`
-- `switch2/interfaces/switch1.config`
-- `switch2/interfaces/pc2.config`
-- `switch2/interfaces/serveur2.config`
-
-### 4. Serveurs (via GUI Packet Tracer)
-
-Voir `serveur1/interface.config` et `serveur2/interface.config` :
+Voir `configs/adressage.config` pour toutes les IPs.
 - Desktop > IP Configuration : saisir IP, masque, passerelle
-- Services > HTTP > ON
-- Modifier `index.html` avec le message correspondant
-
-### 5. PCs (via GUI Packet Tracer)
-
-Voir `pc1/interface.config` et `pc2/interface.config` :
-- Desktop > IP Configuration : saisir IP, masque, passerelle
+- Serveurs uniquement : Services > HTTP > ON, modifier `index.html`
 
 ---
 
