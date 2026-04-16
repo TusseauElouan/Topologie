@@ -47,21 +47,41 @@ Connexions :
 
 ### 1. Routeur
 
-- `configs/routeur/host.config` → coller dans le terminal
-- `configs/routeur/interface_lan.config` → coller dans le terminal
+- `routeur/host.config`
+- `routeur/interfaces/switch1.config`
+- `routeur/interfaces/switch2.config`
 
-### 2. Switch1 et Switch2 (même config, changer le hostname)
+### 2. Switch1
 
-- `configs/switch/host.config` → remplacer `<NOM>` par `Switch1` ou `Switch2`
-- `configs/switch/interface_uplink.config` → remplacer `<INTERFACE>` par `GigabitEthernet0/2`
-- `configs/switch/interface_trunk.config` → remplacer `<INTERFACE>` par `GigabitEthernet0/1`
-- `configs/switch/interface_access.config` → appliquer sur chaque port host (`Fa0/1`, `Fa0/2`, etc.)
+- `switches/switch1/host.config`
+- `switches/switch1/interfaces/routeur.config`
+- `switches/switch1/interfaces/switch2.config`
+- `switches/switch1/interfaces/pc1.config`
+- `switches/switch1/interfaces/serveur1.config`
 
-### 3. Serveurs et PCs (via GUI Packet Tracer)
+### 3. Switch2
 
-Voir `configs/adressage.config` pour toutes les IPs.
-- Desktop > IP Configuration : saisir IP, masque, passerelle
-- Serveurs uniquement : Services > HTTP > ON, modifier `index.html`
+- `switches/switch2/host.config`
+- `switches/switch2/interfaces/routeur.config`
+- `switches/switch2/interfaces/switch1.config`
+- `switches/switch2/interfaces/pc2.config`
+- `switches/switch2/interfaces/serveur2.config`
+
+### 4. Serveurs
+
+- `serveurs/serveur1/interface.config`
+- `serveurs/serveur2/interface.config`
+- Activer HTTP : Services > HTTP > ON
+- Modifier `index.html` avec le message correspondant
+
+### 5. PCs (via GUI Packet Tracer)
+
+Desktop > IP Configuration :
+
+| PC  | IP            | Masque        | Passerelle  |
+|-----|---------------|---------------|-------------|
+| PC1 | 192.168.1.100 | 255.255.255.0 | 192.168.1.1 |
+| PC2 | 192.168.1.101 | 255.255.255.0 | 192.168.1.1 |
 
 ---
 
