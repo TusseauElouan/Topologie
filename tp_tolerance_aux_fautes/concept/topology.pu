@@ -1,0 +1,29 @@
+@startuml TopologieToleranceAuxFautes
+
+skinparam linetype ortho
+
+node "Routeur ISR 4331\n192.168.1.1/24" as R
+
+node "Switch1\n(2960)" as SW1
+node "Switch2\n(2960)" as SW2
+
+node "PC1\n192.168.1.100" as PC1
+node "PC2\n192.168.1.101" as PC2
+node "Serveur1\n192.168.1.10\nHTTP ON" as SRV1
+node "Serveur2\n192.168.1.11\nHTTP ON" as SRV2
+
+R  -- SW1 : Gi0/0/0 <-> Gi0/2
+R  -- SW2 : Gi0/0/1 <-> Gi0/2
+SW1 -- SW2 : Gi0/1 <-> Gi0/1 (trunk)
+
+PC1  -- SW1 : Fa0/1
+SRV1 -- SW1 : Fa0/2
+PC2  -- SW2 : Fa0/1
+SRV2 -- SW2 : Fa0/2
+
+note bottom of SW1
+  Redondance :
+  lien direct vers Switch2
+end note
+
+@enduml
